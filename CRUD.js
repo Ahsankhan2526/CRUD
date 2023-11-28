@@ -1,7 +1,7 @@
 let addUserBtn = document.querySelector(".add-user-btn");
 
 let testDiv = document.childNodes[1].childNodes[2].childNodes[3]
-console.log('testDiv: ', testDiv);
+// console.log('testDiv: ', testDiv);
 
 let input = testDiv.childNodes[3];
 let ul = testDiv.childNodes[7];
@@ -11,21 +11,7 @@ let editBtn;
 
 let editText;
 
-function edit(edt) {
-    // ul.removeChild(edt.parentNode);
-    let ulParent = edt.parentNode.parentNode;
-    console.log('ulParent: ', ulParent);
-    let editChild = edt.parentNode;
-    console.log('editChild: ', editChild);
-    editText = editBtn.previousSibling.previousSibling
-    console.log('editText: ', editText , typeof(editText));
-    input.value = editText.nodeValue;
-    addUserBtn.innerHTML = 'update';
-    editBtn.setAttribute('disabled', 'disabled')
-    delBtn.setAttribute('disabled', 'disabled')
 
-
-}
 
 function addUser(){
     if (input.value.trim().length > 2 && addUserBtn.innerHTML === 'Add User') {
@@ -52,22 +38,39 @@ function addUser(){
     input.value = ''
 }
 if (addUserBtn.innerHTML === 'update') {
-    editText.nodeValue = input.value;
+    ToEdit.nodeValue = input.value;
     addUserBtn.innerHTML ='Add User';
     input.value = '';
-    editBtn.removeAttribute('disabled');
-    delBtn.removeAttribute('disabled');
+    ToEdit.nextSibling.removeAttribute('disabled');
+    ToEdit.nextSibling.nextSibling.removeAttribute('disabled');
 
 }
 }
-
 function delet (del) {
     ul.removeChild(del.parentNode);
 }
 
 
-
-
+let ToEdit;
+function edit(edt) {
+    ToEdit = edt.previousSibling.previousSibling;    
+    input.value = ToEdit.nodeValue;
+    
+    
+    
+    
+    
+    
+    
+    // console.log('edt: ', edt);
+    // let ulParent = edt.parentNode.parentNode;
+    // let editChild = edt.parentNode;
+    // editText = editChild.childNodes[0].nodeValue;
+    
+    addUserBtn.innerHTML = 'update';
+    edt.setAttribute('disabled', 'disabled')
+    edt.previousSibling.setAttribute('disabled', 'disabled')
+}
 
 
 
